@@ -1,0 +1,31 @@
+WINDOW_TITLE = 'Power predictor'
+WINDOW_SIZE = '350x400'
+FONT = 'Arial, 12'
+
+WS_LABEL = 'Wind'
+RM_LABEL = 'Torque'
+CM_LABEL = 'Converter torque'
+RS_LABEL = 'Rotor speed'
+P_LABEL = 'P = '
+
+PREDICT_BUTTON_TEXT = 'Predict'
+
+ROW_INTERVAL = 40
+LABEL_X = 30
+ENTRY_X = 150
+
+BUTTON_WIDTH = 11
+BUTTON_HEIGHT = 1
+
+WS_ORDER = 0
+RM_ORDER = 1
+CM_ORDER = 2
+RS_ORDER = 3
+P_ORDER = 4
+
+MACHINE_ATTR_NAME = 'Wind_turbine_name'
+WS_ATTR_NAME = 'Ws'
+RM_ATTR_NAME = 'Rm'
+CM_ATTR_NAME = 'Cm'
+RS_ATTR_NAME = 'Rs'
+P_ATTR_NAME = 'P'
