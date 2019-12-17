@@ -2,7 +2,7 @@ import pandas as pd
 import Constant
 
 
-class DFHelper():
+class DFHelper:
     def __init__(self):
         self.dataframe = pd.DataFrame()
 
@@ -12,13 +12,8 @@ class DFHelper():
     def get_dataframe(self):
         return self.dataframe
 
-    def choose_needed_data(self, names, attrs):
-        self._clear_unnecessary_name(names)
+    def choose_necessary_data(self, attrs):
         self._clear_unnecessary_attr(attrs)
-
-    def _clear_unnecessary_name(self, names):
-        name_mask = self.dataframe[Constant.MACHINE_ATTR_NAME].isin(names)
-        self.dataframe = self.dataframe[name_mask]
 
     def _clear_unnecessary_attr(self, attrs):
         self.dataframe = self.dataframe[attrs]
@@ -27,9 +22,10 @@ class DFHelper():
         self.dataframe.dropna()
 
     def transform_df_to_float(self):
-        self.dataframe['Ws'] = self.dataframe['Ws'].astype(float)
-        self.dataframe['Ba'] = self.dataframe['Ba'].astype(float)
-        self.dataframe['P'] = self.dataframe['P'].astype(float)
+        attr_names = [Constant.WS_ATTR_NAME, Constant.RM_ATTR_NAME,
+                      Constant.CM_ATTR_NAME, Constant.RS_ATTR_NAME, Constant.P_ATTR_NAME]
+        for attr_name in attr_names:
+            self.dataframe[attr_name] = self.dataframe[attr_name].astype(float)
 
     def head(self):
         print(self.dataframe.head())
