@@ -12,7 +12,7 @@ class DFHelper:
         self.dataframe = self.dataframe[attrs]
 
     def drop_na(self):
-        self.dataframe.dropna()
+        self.dataframe = self.dataframe.dropna()
 
     def values(self):
         return self.dataframe.values
