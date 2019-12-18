@@ -1,12 +1,5 @@
-import pandas as pd
-import Constant
-
-
 class DFHelper:
-    def __init__(self):
-        self.dataframe = pd.DataFrame()
-
-    def set_dataframe(self, dataframe):
+    def __init__(self, dataframe):
         self.dataframe = dataframe
 
     def get_dataframe(self):
@@ -21,11 +14,8 @@ class DFHelper:
     def drop_na(self):
         self.dataframe.dropna()
 
-    def transform_df_to_float(self):
-        attr_names = [Constant.WS_ATTR_NAME, Constant.RM_ATTR_NAME,
-                      Constant.CM_ATTR_NAME, Constant.RS_ATTR_NAME, Constant.P_ATTR_NAME]
-        for attr_name in attr_names:
-            self.dataframe[attr_name] = self.dataframe[attr_name].astype(float)
+    def values(self):
+        return self.dataframe.values
 
     def head(self):
         print(self.dataframe.head())

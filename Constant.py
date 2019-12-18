@@ -28,9 +28,16 @@ CM_ORDER = 2
 RS_ORDER = 3
 P_ORDER = 4
 
+CLUSTER_NUMBER = 3
+
 MACHINE_ATTR_NAME = 'Wind_turbine_name'
 WS_ATTR_NAME = 'Ws'
 RM_ATTR_NAME = 'Rm'
 CM_ATTR_NAME = 'Cm'
 RS_ATTR_NAME = 'Rs'
 P_ATTR_NAME = 'P'
+
+ATTRS_NAME = ['Ws', 'Rm', 'Cm', 'Rs', 'P']
+
+
+DF_HELPER_TYPE_ERROR = 'df_helper must be DFHelper'
