@@ -7,6 +7,7 @@ import DFHelper
 import DecisionTree
 
 global load_csv_thread
+global decision_tree
 
 
 def click_select_file_button():
@@ -18,8 +19,9 @@ def click_select_file_button():
 
 def _load_and_clean_data(file_path):
     dataframe = pd.read_csv(file_path)
-    df_helper = DFHelper.DFHelper()
-    decision_tree = DecisionTree(df_helper)
+    df_helper = DFHelper.DFHelper(dataframe)
+    global decision_tree
+    decision_tree = DecisionTree.DecisionTree(df_helper)
 
 
 def click_predict_button():
