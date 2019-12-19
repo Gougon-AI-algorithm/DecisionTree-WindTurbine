@@ -3,7 +3,6 @@ from tkinter import filedialog
 import pandas as pd
 import threading
 import Constant
-import DFHelper
 import DecisionTree
 
 global load_csv_thread
@@ -19,9 +18,10 @@ def click_select_file_button():
 
 def _load_and_clean_data(file_path):
     dataframe = pd.read_csv(file_path)
-    df_helper = DFHelper.DFHelper(dataframe)
+    dataframe = dataframe[Constant.ATTRS_NAME]
+    dataframe = dataframe.dropna()
     global decision_tree
-    decision_tree = DecisionTree.DecisionTree(df_helper)
+    decision_tree = DecisionTree.DecisionTree(dataframe)
 
 
 def click_predict_button():

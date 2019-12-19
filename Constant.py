@@ -30,6 +30,8 @@ P_ORDER = 4
 
 CLUSTER_NUMBER = 3
 
+P_NODES_INTERVAL = [-20000, 0, 500, 1000, 1300, 1600, 1900, 2100, 2400]
+
 MACHINE_ATTR_NAME = 'Wind_turbine_name'
 WS_ATTR_NAME = 'Ws'
 RM_ATTR_NAME = 'Rm'
@@ -38,6 +40,5 @@ RS_ATTR_NAME = 'Rs'
 P_ATTR_NAME = 'P'
 
 ATTRS_NAME = ['Ws', 'Rm', 'Cm', 'Rs', 'P']
-
 
 DF_HELPER_TYPE_ERROR = 'df_helper must be DFHelper'
