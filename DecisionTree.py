@@ -11,12 +11,12 @@ class DecisionTree:
         self.p_conditions = Constant.P_NODES_INTERVAL
 
         self.root = self._make_decision_tree(self.dataframe, self.all_labels)
-        print(self.root)
+        self.print_tree(self.root)
 
     def _get_labels(self):
         nodes = {}
-        attrs = [self.dataframe.get_column(Constant.WS_ATTR_NAME), self.dataframe.get_column(Constant.RM_ATTR_NAME),
-                 self.dataframe.get_column(Constant.CM_ATTR_NAME), self.dataframe.get_column(Constant.RS_ATTR_NAME)]
+        attrs = [self.dataframe[Constant.WS_ATTR_NAME], self.dataframe[Constant.RM_ATTR_NAME],
+                 self.dataframe[Constant.CM_ATTR_NAME], self.dataframe[Constant.RS_ATTR_NAME]]
         attr_order = 0
         for attr in attrs:
             attr_labels = self._get_attr_labels(attr)
@@ -36,13 +36,23 @@ class DecisionTree:
         return attr_labels
 
     def _make_decision_tree(self, data_set, labels):
+        clone_labels = labels.copy()
+        clone_data_set = data_set.copy()
         node = Node.Node()
-        label = self._get_highest_information_gain_label(data_set, labels)
+
+        label = self._get_highest_information_gain_label(clone_data_set, clone_labels)
         node.set_value(label)
         children = []
-        for condition_count in range(len(self.all_labels[label])):
-            data_set = self._split_data_set(data_set, label, condition_count)
-            children.append(self._make_decision_tree(data_set))
+
+        del clone_labels[label]
+
+        if len(clone_labels) == 0:
+            return node
+
+        for condition_count in range(len(self.all_labels[label]) - 1):
+            clone_data_set = self._split_data_set(clone_data_set, label, condition_count)
+            children.append(self._make_decision_tree(clone_data_set, clone_labels))
+
         node.set_children(children)
         return node
 
@@ -56,7 +66,8 @@ class DecisionTree:
     def _split_data_set(self, data_set, label, condition_count):
         left_margin = self.all_labels[label][condition_count]
         right_margin = self.all_labels[label][condition_count + 1]
-        data_set = data_set[left_margin <= data_set[label] < right_margin]
+        data_set = data_set[left_margin <= data_set[label]]
+        data_set = data_set[data_set[label] < right_margin]
         return data_set
 
     def _calc_entropy(self, data_set, conditions):
@@ -81,6 +92,17 @@ class DecisionTree:
 
     def get_labels(self):
         return self.all_labels
+
+    def print_tree(self, node):
+        print(node.get_value(), end='')
+        if not len(node.children) == 0:
+            print('[', end='')
+        for children in node.get_children():
+            self.print_tree(children)
+            if not node.get_children()[-1] == children:
+                print(',', end='')
+        if not len(node.children) == 0:
+            print(']', end='')
 
     def _do_nothing(self):
         pass

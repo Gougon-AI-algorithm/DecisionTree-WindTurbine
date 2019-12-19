@@ -1,7 +1,7 @@
 class Node:
     def __init__(self):
         self.value = 0
-        self.children = {}
+        self.children = []
         self.entropy = 0
 
     def get_value(self):
@@ -14,7 +14,7 @@ class Node:
         return self.children
 
     def set_children(self, children):
-        if isinstance(children, dict):
+        if isinstance(children, list):
             self.children = children
 
     def get_entropy(self):
