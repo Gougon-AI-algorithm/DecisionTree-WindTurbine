@@ -26,6 +26,9 @@ def _load_and_clean_data(file_path):
 
 def click_predict_button():
     load_csv_thread.join()
+    params = [float(entries[Constant.WS_ORDER].get()), float(entries[Constant.RM_ORDER].get()),
+              float(entries[Constant.CM_ORDER].get()), float(entries[Constant.RS_ORDER].get())]
+    decision_tree.predict(params)
 
 
 def append_label(text, order, is_output=False):

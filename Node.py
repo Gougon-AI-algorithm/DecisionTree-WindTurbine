@@ -2,7 +2,7 @@ class Node:
     def __init__(self):
         self.value = 0
         self.children = []
-        self.entropy = 0
+        self.cluster = 0
 
     def get_value(self):
         return self.value
@@ -17,8 +17,8 @@ class Node:
         if isinstance(children, list):
             self.children = children
 
-    def get_entropy(self):
-        return self.entropy
+    def get_cluster(self):
+        return self.cluster
 
-    def set_entropy(self, entropy):
-        self.entropy = entropy
+    def set_cluster(self, cluster):
+        self.cluster = cluster
